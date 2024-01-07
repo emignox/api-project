@@ -65,7 +65,7 @@ const PokemonComponent: React.FC = () => {
                 }}
               >
                 <img
-                  className="w-72"
+                  className="w-72  "
                   src={pokemon.details.sprites.front_default}
                   alt="Front Default"
                 />
