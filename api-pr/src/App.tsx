@@ -5,7 +5,7 @@ import Pokemon from "./pokemon";
 
 function App() {
   return (
-    <Router>
+    <Router basename="/api-project">
       <div className="App">
         <Routes>
           <Route path="/" element={<Pokemon />} />
