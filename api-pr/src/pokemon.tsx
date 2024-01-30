@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Pokemon, PokemonDetails } from "./types";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const PokemonComponent: React.FC = () => {
   const [pokemonData, setPokemonData] = useState<Pokemon[]>([]);
+  const navigate = useNavigate();
 
   const fetchData = async () => {
     try {
@@ -45,6 +46,10 @@ const PokemonComponent: React.FC = () => {
     fetchData();
   }, []);
 
+  const handleClick = (pokemonName: string) => {
+    navigate(`/pokemon/${pokemonName}`);
+  };
+
   return (
     <>
       <h1
@@ -58,7 +63,7 @@ const PokemonComponent: React.FC = () => {
           <div key={index} className="m-4">
             {pokemon.details && (
               <div
-                className="lg:flex lg:flex-col lg:items-center lg:justify-center flex items-center flex-col justify-center  mx-auto mb-20 w-72 shadow-2xl rounded-lg lg:mx-20 lg:px-10"
+                className="lg:flex lg:flex-col lg:items-center lg:justify-center flex items-center flex-col justify-center   w-2/3 mx-auto h-96  shadow-2xl rounded-lg  lg:px-10"
                 style={{
                   background: "linear-gradient(to top, #df5825, #fefeda)",
                   border: "1px solid #df5825",
@@ -76,36 +81,35 @@ const PokemonComponent: React.FC = () => {
                   HP : {pokemon.details.hp}
                 </p>
                 <div
-                  className="bg-green-600 h-4 mb-2 rounded-lg "
+                  className="bg-green-600 h-4 rounded-lg "
                   style={{
                     width: `${pokemon.details.hp}%`,
                     background: "linear-gradient(to top, #086030, #15B25E)",
                   }}
                 />
                 <div>
-                  <Link to={`/pokemon/${pokemon.name}`}>
-                    <h2
-                      className="text-center text-2xl mb-5 font-bold lg:text-4xl  lg:hover:text-5xl transition-all duration-700 ease-in-out"
-                      style={{ color: "#fefeda" }}
-                    >
-                      {pokemon.name.charAt(0).toUpperCase() +
-                        pokemon.name.slice(1)}{" "}
-                    </h2>
-                  </Link>
+                  <h2
+                    className="text-center text-2xl  font-bold lg:text-4xl  lg:hover:text-5xl transition-all duration-700 ease-in-out"
+                    style={{ color: "#fefeda" }}
+                    onClick={() => handleClick(pokemon.name)}
+                  >
+                    {pokemon.name.charAt(0).toUpperCase() +
+                      pokemon.name.slice(1)}{" "}
+                  </h2>
                   <p
-                    className="text-2xl mb-5 text-center"
+                    className="text-2xl  text-center"
                     style={{ color: "#fefeda" }}
                   >
                     Height: {pokemon.details.height}
                   </p>
                   <p
-                    className="text-2xl mb-5 text-center"
+                    className="text-2xl  text-center"
                     style={{ color: "#fefeda" }}
                   >
                     Weight: {pokemon.details.weight}
                   </p>
                   <p
-                    className="text-2xl mb-5 text-center"
+                    className="text-2xl text-center"
                     style={{ color: "#fefeda" }}
                   >
                     Base Experience: {pokemon.details.base_experience}

@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import SinglePokemon from "./singlePokemon";
-
 import Pokemon from "./pokemon";
 
 function App() {
